@@ -4,10 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.recyclerview.R
 import com.example.recyclerview.data.entities.Users
 import com.example.recyclerview.databinding.ItemsUsersBinding
-class UsersAdapter () : RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
+class UsersAdapter (private val onDeleteItem : ( Int )-> Unit ,
+                    private val onSelectItem: ( Users ) -> Unit) :
+    RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
 
     //Creamos una variable adapter
     var listUsers: List<Users> = listOf()
@@ -18,13 +21,26 @@ class UsersAdapter () : RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
         private var binding: ItemsUsersBinding = ItemsUsersBinding.bind(view)
 
         //Encargada de la iteracion de cada usuario
-        fun render (item: Users) {
+
+
+        fun render (item: Users, onDeleteItem : ( Int)-> Unit, onSelectItem: ( Users ) -> Unit) {
 
             //Ingreso de datos que se implementaran en la Interfaz
             binding.txtUserName.text = item.name
             binding.txtUserDesc.text = item.desc
+            binding.imgUser.load(item.img)
 
+            binding.btnBorrar.setOnClickListener {
+                onDeleteItem(adapterPosition)
+            }
+
+            binding.imgUser.setOnClickListener {
+                onSelectItem(item)
+            }
         }
+
+
+
     }
 
     //Implementacion de la Clases Abstractas
@@ -53,7 +69,7 @@ class UsersAdapter () : RecyclerView.Adapter<UsersAdapter.ViewHolderUsers>() {
     //Ingresa cada uno de los elemoentos de las dos clases anteriores, los une y los envia.
     override fun onBindViewHolder(holder: ViewHolderUsers, position: Int) {
 
-        holder.render(listUsers[position])
+        holder.render(listUsers[position], onDeleteItem, onSelectItem)
     }
 
 }

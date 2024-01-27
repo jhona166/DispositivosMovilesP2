@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private var count : Int = 1
 
-    //Creamos el adaptador como una variable de clase
+
     //private var usersAdapter = UsersAdapter({deleteUsers(it)}, {selectUsers(it)})
 
     private var userDiffAdapter = UsersAdapterDiffUtil({deleteDiffUsers(it)}, {selectUsers(it)})
@@ -29,13 +29,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         initRecycleView()
         initListeners()
     }
-
     //Inicializamos nuestro RecyclerView
     private fun initRecycleView(){
+
 
         binding.rvUsers.adapter = userDiffAdapter
         binding.rvUsers.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
@@ -45,10 +44,12 @@ class MainActivity : AppCompatActivity() {
         //Manera Facil
         binding.btnInsert.setOnClickListener {
             val us = Users(1,
+
                 "Jhonatan $count" ,
-                "Alumno",
+                "alumno",
                 "https://as1.ftcdn.net/v2/jpg/05/18/10/54/1000_F_518105489_I5rSS9oSMXURJCJQtuEbl9AEQlEPu8LZ.jpg")
 
+          
             count++
 
             //Adapter Tradicional
@@ -60,18 +61,14 @@ class MainActivity : AppCompatActivity() {
     }
     /*
         private fun insertUsers(us: Users){
-
             userList.add(us)
             Log.d("LST",userList.toString())
             usersAdapter.listUsers = userList
-
             //Notifacion Simple
             usersAdapter.notifyDataSetChanged()
-
             //Notifiacion de manera complementaria
             usersAdapter.notifyItemInserted(userList.size)
         }
-
      */
 
     private fun insertUsersDiff(us: Users){
@@ -83,12 +80,9 @@ class MainActivity : AppCompatActivity() {
     }
     /*
         private fun deleteUsers(position: Int){
-
             userList.removeAt(position)
             usersAdapter.listUsers = userList
-
         }
-
      */
 
     private fun deleteDiffUsers(position: Int){
