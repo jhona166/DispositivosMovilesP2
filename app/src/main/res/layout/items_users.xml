@@ -25,20 +25,27 @@
         <TextView
             android:id="@+id/txtUserName"
             tools:text="Nombre"
-            android:textSize="18sp"
+            android:textSize="18dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:id="@+id/txtUserDesc"
-            tools:text="Nombre"
-            android:textSize="14sp"
+            tools:text="Descripcion"
+            android:textSize="14dp"
             android:layout_marginTop="5dp"
             android:maxLines="3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-
+        <Button
+            android:id="@+id/btnBorrar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:backgroundTint="@color/black"
+            android:text="Borrar Usuario"/>
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
